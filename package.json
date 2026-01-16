@@ -7,17 +7,21 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
-    "build:win": "electron-builder --win",
+    "rebuild": "electron-rebuild -f -w winax",
+    "postinstall": "electron-rebuild -f -w winax",
+    "build": "npm run rebuild && electron-builder",
+    "build:win": "npm run rebuild && electron-builder --win",
     "release:patch": "powershell -ExecutionPolicy Bypass -File ./scripts/release.ps1 -VersionType patch",
     "release:minor": "powershell -ExecutionPolicy Bypass -File ./scripts/release.ps1 -VersionType minor",
     "release:major": "powershell -ExecutionPolicy Bypass -File ./scripts/release.ps1 -VersionType major"
   },
   "dependencies": {
     "electron-updater": "^6.7.3",
+    "winax": "^3.6.3",
     "ws": "^8.14.2"
   },
   "devDependencies": {
+    "@electron/rebuild": "^4.0.2",
     "electron": "^22.3.27",
     "electron-builder": "^24.9.1"
   },
@@ -37,6 +41,7 @@
       "styles.css",
       "icon.ico",
       "node_modules/ws/**/*",
+      "node_modules/winax/**/*",
       "node_modules/electron-updater/**/*"
     ],
     "extraResources": [
