@@ -46,9 +46,15 @@ function startBridgeWorker() {
 
   // Use system Node.js to run the worker
   // This allows winax to work properly
+  // Set NODE_PATH so system Node.js can find modules in the app's node_modules
+  const nodeModulesPath = path.join(__dirname, 'node_modules')
   bridgeProcess = spawn('node', [workerPath], {
     cwd: __dirname,
-    stdio: ['pipe', 'pipe', 'pipe']
+    stdio: ['pipe', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      NODE_PATH: nodeModulesPath
+    }
   })
 
   log('Starting bridge worker...', 'info')
