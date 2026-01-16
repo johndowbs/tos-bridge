@@ -1,6 +1,6 @@
 {
   "name": "tos-bridge",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "TOS RTD Bridge - Streams real-time option data from ThinkOrSwim",
   "main": "main.js",
   "author": "SPX 0DTE Trader",
