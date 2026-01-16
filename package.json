@@ -48,6 +48,7 @@
       }
     ],
     "asar": false,
+    "npmRebuild": false,
     "win": {
       "target": "nsis",
       "icon": "icon.ico",
