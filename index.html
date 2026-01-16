@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>TOS Bridge</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>TOS Bridge</h1>
+      <p class="subtitle">Streams real-time option data from ThinkOrSwim</p>
+      <p class="version" id="version-display">v1.0.0</p>
+    </header>
+
+    <!-- Update Banner (hidden by default) -->
+    <div id="update-banner" class="update-banner hidden">
+      <span id="update-message">Update available!</span>
+      <button id="update-btn" class="btn btn-small">Download</button>
+    </div>
+
+    <!-- Status Cards -->
+    <div class="status-grid">
+      <!-- TOS Connection -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">ThinkOrSwim</span>
+          <span id="tos-status" class="status-badge disconnected">Disconnected</span>
+        </div>
+        <div class="card-body">
+          <button id="connect-tos-btn" class="btn btn-primary">Reconnect TOS</button>
+          <button id="restart-btn" class="btn btn-small" style="margin-left: 8px;">Restart Bridge</button>
+        </div>
+      </div>
+
+      <!-- WebSocket Server -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">WebSocket Server</span>
+          <span id="server-status" class="status-badge disconnected">Stopped</span>
+        </div>
+        <div class="card-body">
+          <div class="url-display" id="ws-url">Not running</div>
+          <div class="stats">
+            <span>Clients: <strong id="client-count">0</strong></span>
+            <span>Subscriptions: <strong id="sub-count">0</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connection URL -->
+    <div class="card url-card">
+      <div class="card-header">
+        <span class="card-title">Connection URL</span>
+        <button id="copy-btn" class="btn btn-small">Copy</button>
+      </div>
+      <div class="card-body">
+        <input type="text" id="url-input" readonly value="Not running">
+        <p class="help-text">Enter this URL in your SPX 0DTE Trader app settings</p>
+      </div>
+    </div>
+
+    <!-- Logs -->
+    <div class="card logs-card">
+      <div class="card-header">
+        <span class="card-title">Logs</span>
+        <button id="clear-logs-btn" class="btn btn-small">Clear</button>
+      </div>
+      <div class="card-body">
+        <div id="logs" class="logs"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
